@@ -152,11 +152,11 @@
                         <span style="font-size: 14px;"><br />
 	 ${page.content}
 
-<a href="<c:url value="/edit-webpage-${page.page_id}"/>"
+<a href="<c:url value="/edit/webpage/${page.page_id}"/>"
 			class="btn btn-primary " id="edtpage"
 			style="display: none !important">			
 </a>
-<a href="<c:url value="/add-document-${page.page_id}"/>"
+<a href="<c:url value="/add-document/${page.page_id}"/>"
 			class="btn btn-primary " id="adddoc"
 			style="display: none !important">			
 </a>

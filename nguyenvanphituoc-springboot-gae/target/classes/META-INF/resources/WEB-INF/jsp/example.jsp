@@ -18,10 +18,17 @@
 	<jsp:attribute name="footer">
     </jsp:attribute>
 	<jsp:body>
-
-
-		    	</br>
-		    	</br>
+		<h1>
+			Hello <b><c:out value="${pageContext.request.remoteUser}"></c:out></b>
+		</h1>
+		<a href=" <c:url value ='/logout'/>"> Logout </a>
+		<br>
+		<c:if test="${param.error ne null}">
+			<div class="alert-danger">Invalid username and password.</div>
+		</c:if>
+		<c:if test="${param.logout ne null}">
+			<div class="alert-normal">You have been logged out.</div>
+		</c:if>
 		    	<table class="table table-hover">
 					<tr>
 						<th>Id</th>
@@ -34,25 +41,19 @@
 							
 							<td>${web.description}</td>
 					
-							<td><a href="<c:url value='/delete-page-${web.page_id}' />"
+							<td><a href="<c:url value='/delete/page/${web.page_id}' />"
 							class="btn btn-danger custom-width">delete</a><a
-							href="<c:url value='/edit-webpage-${web.page_id}' />"
+							href="<c:url value='/edit/webpage/${web.page_id}' />"
 							class="btn btn-info custom-width"> edit </a>
 							<%-- <a
 							href="<c:url value='/add-document-${web.page_id}-${"example"}' />"
 							class="btn btn-info custom-width"> edit </a></td> --%>
-							
-						
+
 			</tr>
 					</c:forEach>
 					
 		    		</tbody>
 				</table>
-				<a href="<c:url value='/new-webpage' />"
-				class="btn btn-primary ">new </a>
-		 
-
-
-	
+				<a href="<c:url value='/new/webpage' />" class="btn btn-primary ">new </a>
            </jsp:body>
 </t:templetepage>

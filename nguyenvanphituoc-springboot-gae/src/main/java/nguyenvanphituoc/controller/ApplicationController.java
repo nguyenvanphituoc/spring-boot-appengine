@@ -1,6 +1,9 @@
 package nguyenvanphituoc.controller;
 
+import org.apache.tomcat.util.net.openssl.ciphers.Authentication;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -18,6 +21,7 @@ import nguyenvanphituoc.service.WebInfoServiceIF;
 import java.io.IOException;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
@@ -46,6 +50,21 @@ public class ApplicationController {
 	{
 		initialSidebar(model);
 		return "jsp/home";
+	}
+	
+	@RequestMapping("/login")
+	public String login(Model model) throws IOException
+	{
+		return "jsp/login";
+	}
+	
+	@RequestMapping(value="/logout", method = RequestMethod.GET)
+	public String logoutPage (HttpServletRequest request, HttpServletResponse response) {
+	    org.springframework.security.core.Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    if (auth != null){    
+	        new SecurityContextLogoutHandler().logout(request, response, auth);
+	    }
+	    return "redirect:/login?logout";//You can redirect wherever you want, but generally it's a good practice to show login screen again.
 	}
 	
 	@RequestMapping("/thymeleaf")
@@ -112,7 +131,7 @@ public class ApplicationController {
 		return "redirect:/" + pageId;
 	}
 	
-	@RequestMapping(value = { "/edit-webpage-{pageID}" }, method = RequestMethod.GET)
+	@RequestMapping(value = { "/edit/webpage/{pageID}" }, method = RequestMethod.GET)
 	public String updatePage(@PathVariable String pageID, ModelMap model ) {
 		int id=Integer.parseInt(pageID);
 		WebInfo webInfo = webInfoService.findById(id);
@@ -120,13 +139,13 @@ public class ApplicationController {
 		return "jsp/edit";
 	}
 
-	@RequestMapping(value = { "/edit-webpage-{pageID}" }, method = RequestMethod.POST)
+	@RequestMapping(value = { "/edit/webpage/{pageID}" }, method = RequestMethod.POST)
 	public String savePage(@Valid WebInfo webInfo, @PathVariable int pageID) {
 		webInfoService.updateWebpage(webInfo);
 		return "redirect:/" + pageID;
 	}
 
-	@RequestMapping(value = { "/add-document-{pageId}" }, method = RequestMethod.GET)
+	@RequestMapping(value = { "/add-document/{pageId}" }, method = RequestMethod.GET)
 	public String addDocuments(@PathVariable int pageId, ModelMap model) {
 		WebInfo web = webInfoService.findById(pageId);
 		model.addAttribute("web", web);
@@ -139,7 +158,7 @@ public class ApplicationController {
 		return "jsp/managedocuments";
 	}
 	
-	@RequestMapping(value = { "/add-document-{pageId}" }, method = RequestMethod.POST)
+	@RequestMapping(value = { "/add-document/{pageId}" }, method = RequestMethod.POST)
 	public String uploadDocument(@Valid FileBucket fileBucket, BindingResult result, 
 			ModelMap model, @PathVariable int pageId) throws IOException{
 		
@@ -165,7 +184,7 @@ public class ApplicationController {
 		}
 	}
 	
-	@RequestMapping(value = { "/delete-page-{pageID}" }, method = RequestMethod.GET)
+	@RequestMapping(value = { "/delete/page/{pageID}" }, method = RequestMethod.GET)
 	public String deletePage(@PathVariable String pageID) {
 		int id=Integer.parseInt(pageID);
 		webInfoService.deleteUserById(id);
@@ -173,14 +192,14 @@ public class ApplicationController {
 		return "redirect:/admin";
 	}
 
-	@RequestMapping(value = { "/new-webpage" }, method = RequestMethod.GET)
+	@RequestMapping(value = { "/new/webpage" }, method = RequestMethod.GET)
 	public String newPage(ModelMap model) {
 		WebInfo webInfo = new WebInfo();
 		model.addAttribute("webInfo", webInfo);
 		return "jsp/registation";
 	}
 
-	@RequestMapping(value = { "/new-webpage" }, method = RequestMethod.POST)
+	@RequestMapping(value = { "/new/webpage" }, method = RequestMethod.POST)
 	public String savePage(@Valid WebInfo webInfo, BindingResult result,
 			ModelMap model) 
 	{

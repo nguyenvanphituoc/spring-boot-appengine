@@ -487,7 +487,7 @@
 										<div class="thongbao_phong">
 											<div class="topictb_phong_blue">
 												<h3>Latest news
-												<span><a href="/edit-webpage-${1001}" class="rmLink" style="width: auto; background-color : grey; color: inherit;" id="news">Edit</a></span>
+												<span><a href="/edit/webpage/${1001}" class="rmLink" style="width: auto; background-color : grey; color: inherit;" id="news">Edit</a></span>
 												</h3>
 												
 												<a class="wobble-horizontal"
@@ -514,7 +514,7 @@
 														style="text-align: left; width: 350px; height: 40px; vertical-align: middle; background-color: #ff0000;">&nbsp;<span
 														style="font-size: 20px; color: #ffff00;"><strong>IMPORTANT
 																DEADLINES</strong></span>
-														<span><a href="/edit-webpage-${1002}" class="rmLink" style="width: auto; background-color : grey; color: inherit;" id="news">Edit</a></span>
+														<span><a href="/edit/webpage/${1002}" class="rmLink" style="width: auto; background-color : grey; color: inherit;" id="news">Edit</a></span>
 														</td>
 												</tr>
 											</tbody>
@@ -533,7 +533,7 @@
 														style="width: 350px; height: 40px; background-color: #92d050;"><strong><span><span
 																style="font-size: 20px; color: #c00000;">SPECIAL
 																	SESSION</span><br /> </span></strong>
-									<span><a href="/edit-webpage-${1003}" class="rmLink" style="width: auto; background-color : grey; color: inherit;" id="news">Edit</a></span>
+									<span><a href="/edit/webpage/${1003}" class="rmLink" style="width: auto; background-color : grey; color: inherit;" id="news">Edit</a></span>
 												</tr>
 											</tbody>
 										</table>
@@ -552,7 +552,7 @@
 														style="text-align: left; width: 350px; vertical-align: middle; height: 40px; background-color: #002060;">&nbsp;<span
 														style="font-size: 20px; color: #ffff00;"><strong>KEY
 																LINKS</strong></span>
-									<span><a href="/edit-webpage-${1004}" class="rmLink" style="width: auto; background-color : grey; color: inherit;" id="news">Edit</a></span>
+									<span><a href="/edit/webpage/${1004}" class="rmLink" style="width: auto; background-color : grey; color: inherit;" id="news">Edit</a></span>
 												</tr>
 											</tbody>
 										</table>
