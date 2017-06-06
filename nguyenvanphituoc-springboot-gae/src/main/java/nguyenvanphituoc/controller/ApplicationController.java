@@ -52,9 +52,17 @@ public class ApplicationController {
 		return "jsp/home";
 	}
 	
-	@RequestMapping("/login")
+	@RequestMapping(value="/login", method = RequestMethod.GET)
 	public String login(Model model) throws IOException
 	{
+		 initialSidebar(model);
+		return "jsp/login";
+	}
+	
+	@RequestMapping(value="/signin/facebook", method = RequestMethod.POST)
+	public String loginFacebook(Model model) throws IOException
+	{
+		 initialSidebar(model);
 		return "jsp/login";
 	}
 	
@@ -93,7 +101,7 @@ public class ApplicationController {
 		return "jsp/page";
 	}
 
-	@RequestMapping(value = { "/latestnewsFirst" }, method = RequestMethod.GET)
+	/*@RequestMapping(value = { "/latestnewsFirst" }, method = RequestMethod.GET)
 	public String latestnewsFirst(Model model){
 		WebInfo webInfo=webInfoService.findById(24);
 		model.addAttribute("firstnews",webInfo);
@@ -112,7 +120,7 @@ public class ApplicationController {
 		WebInfo webInfo=webInfoService.findById(26);
 		model.addAttribute("thirdnews",webInfo);
 		return "jsp/latestnewsThird";	
-	}
+	}*/
 
 	@RequestMapping(value = { "/download-document/{docId}/{pageId}" }, method = RequestMethod.GET)
 	public String downloadDocument(@PathVariable int docId, @PathVariable("pageId") int pageId, HttpServletResponse response) throws IOException {
@@ -180,7 +188,7 @@ public class ApplicationController {
 
 			saveDocument(fileBucket, web);
 
-			return "redirect:/add-document-"+pageId;
+			return "redirect:/add-document/"+pageId;
 		}
 	}
 	
